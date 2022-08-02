@@ -5,11 +5,18 @@ class View {
     console.log(this.mainContainerEl);
   }
 
-  addParagraph(text){
-    const pEl = document.createElement('p');
-    pEl.append(text);
-    document.querySelector('#main-container').append(pEl);
-}
+  addParagraph(newText){
+    const newP = document.createElement('p');
+    newP.innerText = newText;
+    this.mainContainerEl.append(newP);
+  }
+
+  clearParagraphs(){
+    const allParagraphs = document.querySelectorAll('p');
+    allParagraphs.forEach (paragraph => {
+      paragraph.remove();
+    })
+  }
 }
 
 module.exports = View;
