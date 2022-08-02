@@ -4,6 +4,12 @@ class View {
 
     console.log(this.mainContainerEl);
   }
+
+  addParagraph(text){
+    const pEl = document.createElement('p');
+    pEl.append(text);
+    document.querySelector('#main-container').append(pEl);
+}
 }
 
 module.exports = View;
