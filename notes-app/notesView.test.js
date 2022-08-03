@@ -7,6 +7,8 @@ const fs = require('fs');
 const { isTypedArray } = require('util/types');
 const NotesView = require('./notesView');
 const notesModel = require('./notesModel');
+const notesApi = require('./notesApi');
+require('jest-fetch-mock').enableMocks()
 
 describe('notesView',() => {
   beforeEach(()=> {
@@ -45,5 +47,21 @@ describe('notesView',() => {
       view.displayNotes();
     
       expect(document.querySelectorAll('div.note').length).toEqual(2);
+    });
+
+    it('calls displayNotesFromApi() and returns ...',() => {
+      const NotesApi = new notesApi();
+      const model = new notesModel();
+      const view = new NotesView(model, NotesApi);
+
+      fetch.mockResponseOnce(JSON.stringify({
+        title: { title1: 'a', title2: 'b' }
+      }));
+      view.displayNotesFromApi();
+      
+      // expect(document.body.querySelectorAll('div.note').length).toEqual(1);
+      NotesApi.loadNotes((note) => {
+        expect(note.title).toBe("Some value");
+      });
     });
 })

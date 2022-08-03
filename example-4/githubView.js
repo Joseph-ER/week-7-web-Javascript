@@ -17,15 +17,14 @@ class GithubView {
   }
 
   display() {
-    const searchedEl = document.createElement('div');
+    document.querySelectorAll('img').forEach(element =>{
+      element.remove();
+    });
     const repoImage = document.createElement('img');
-    searchedEl.id = 'message';
-    searchedEl.title = this.repoData.name;
-    searchedEl.innerText = this.repoData.description;
     repoImage.src = this.repoData.organization.avatar_url;
-    document.querySelector('#repo-name').append(searchedEl.title);
-    document.querySelector('#repo-description').append(searchedEl.innerText);
-    document.querySelector('#repo-description').append(repoImage);
+    document.querySelector('#repo-name').innerText = this.repoData.name;
+    document.querySelector('#repo-description').innerText =this.repoData.description;
+    document.querySelector('div').append(repoImage);
   }
 
 

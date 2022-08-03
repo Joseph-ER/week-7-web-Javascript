@@ -1,7 +1,6 @@
 class notesModel {
   constructor() {
     this.notes = [];
-
   }
   getNotes() {
     return this.notes;
@@ -12,6 +11,11 @@ class notesModel {
   reset() {
     this.notes = [];
   }
+
+  setNotes(notes){
+    this.notes = notes;
+  }
+
 };
 
 module.exports = notesModel;
